@@ -38,6 +38,7 @@ function handleOperation(e) {
       a = operate(a, b, op);
       b = "";
       bFlag = false;
+      op = e.target.value;
       updateCurrentOpDisplay(currentOpDisplay, a);
     } else if (aFlag) {
       op = e.target.value;
@@ -52,6 +53,9 @@ function handleOperation(e) {
     if (aFlag && bFlag && opFlag) {
       a = operate(a, b, op);
       updateCurrentOpDisplay(currentOpDisplay, a);
+
+      b = "";
+      bFlag = false;
     }
   }
 
