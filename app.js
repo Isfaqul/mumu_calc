@@ -54,8 +54,8 @@ function handleOperation(e) {
       a = operate(a, b, op);
       updateCurrentOpDisplay(currentOpDisplay, a);
 
-      b = "";
-      bFlag = false;
+      // Set all variables to default;
+      setOperationVarsToDefault();
     }
   }
 
@@ -100,7 +100,7 @@ function operate(numA, numB, operation) {
 function resetCalc() {
   setOperationVarsToDefault();
   currentOpDisplay.innerText = "0";
-  prevOpDisplay.innerText = "result";
+  prevOpDisplay.innerText = "=";
 }
 
 // function to set all opereation variables back to default;
