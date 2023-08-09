@@ -1,0 +1,188 @@
+:root {
+  /* Header Section */
+  --body-bg: #3b4664;
+  --calc-body-bg: #3b4664;
+  --calc-title: white;
+
+  /* Display */
+  --display-bg: #181f32;
+  --display-previous-txt: rgba(255, 255, 255, 0.6);
+  --display-main-txt: white;
+
+  /* Keypad */
+  --keypad-bg: #252d44;
+  --num-key-main: #eae3db;
+  --num-key-shadow: #b4a59a;
+  --num-key-txt: #454955;
+  --delete-key-main: #647299;
+  --delete-key-shadow: #404e75;
+  --delete-key-txt: white;
+  --operate-key-main: #99646a;
+  --operate-key-shadow: #784a4f;
+  --operator-key-txt: white;
+  --equal-key-main: #d13f30;
+  --equal-key-shadow: #8f2316;
+  --equal-key-txt: white;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: var(--body-bg);
+  padding: 1em;
+}
+
+.app-container {
+  padding: 3.2em 2.4em;
+  /* border: 2px solid rgba(255, 255, 255, 0.1); */
+  width: 100%;
+  max-width: 37.5rem;
+  /* box-shadow: 0px 0px 15px 9px rgba(37, 45, 68, 0.2) inset; */
+  border-radius: 2em;
+}
+
+.sections.header {
+  margin-bottom: 2.2em;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--calc-title);
+}
+
+.sections.display {
+  background-color: var(--display-bg);
+  padding: 0.9em 2.4em;
+  border-radius: 1em;
+  margin-bottom: 2.2em;
+  min-height: 9.6rem;
+}
+
+.display .previous-operation {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--display-previous-txt);
+  text-align: right;
+}
+
+.display .current-operation {
+  color: var(--display-main-txt);
+  font-size: 3.5rem;
+  text-align: right;
+  font-weight: 800;
+}
+
+.sections.keypad {
+  padding: 2.4em;
+  background-color: var(--keypad-bg);
+  border-radius: 1em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 1.3em;
+  row-gap: 1.6em;
+}
+
+.btn {
+  display: block;
+  height: 6.1rem;
+  max-height: 6.1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  transition: 50ms all ease-in-out;
+}
+
+.btn.num-btn {
+  font-size: 2.8rem;
+  color: var(--num-key-txt);
+  background-color: var(--num-key-main);
+  box-shadow: 0px 3px 0px 0px var(--num-key-shadow);
+}
+
+.btn.del-btn {
+  font-size: 1.8rem;
+  color: var(--delete-key-txt);
+  background-color: var(--delete-key-main);
+  text-transform: uppercase;
+  box-shadow: 0px 3px 0px 0px var(--delete-key-shadow);
+}
+
+.btn.operate-btn {
+  background-color: var(--operate-key-main);
+  font-size: 2.8rem;
+  color: var(--operator-key-txt);
+  box-shadow: 0px 3px 0px 0px var(--operate-key-shadow);
+}
+
+.btn.equal-btn {
+  background-color: var(--equal-key-main);
+  box-shadow: 0px 3px 0px 0px var(--equal-key-shadow);
+}
+
+.btn.span-two {
+  grid-column: span 2;
+}
+
+/* num btn effects */
+
+.btn.num-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 4px 0px 0px var(--num-key-shadow);
+}
+
+.btn.num-btn:active {
+  transform: none;
+  box-shadow: 0px 3px 0px 0px var(--num-key-shadow);
+}
+
+/* del btn effects */
+
+.btn.del-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 4px 0px 0px var(--delete-key-shadow);
+}
+
+.btn.del-btn:active {
+  transform: none;
+  box-shadow: 0px 3px 0px 0px var(--delete-key-shadow);
+}
+
+/* operator btn effects */
+
+.btn.operate-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 4px 0px 0px var(--operate-key-shadow);
+}
+
+.btn.operate-btn:active {
+  transform: none;
+  box-shadow: 0px 3px 0px 0px var(--operate-key-shadow);
+}
+
+/* Equal btn effects */
+
+.btn.equal-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 4px 0px 0px var(--equal-key-shadow);
+}
+
+.btn.equal-btn:active {
+  transform: none;
+  box-shadow: 0px 3px 0px 0px var(--equal-key-shadow);
+}
