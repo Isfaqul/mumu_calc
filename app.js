@@ -51,10 +51,16 @@ function handleOperation(e) {
   if (e.target.hasAttribute("data-equal")) {
     if (aFlag && bFlag && opFlag) {
       a = operate(a, b, op);
-      b = "";
-      bFlag = false;
       updateDisplay(currentOpDisplay, a);
+
+      // Set all back to after result is displayed
+      setOperationVarsToDefault();
     }
+  }
+
+  // If target button is a reset button
+  if (e.target.hasAttribute("data-reset")) {
+    resetCalc();
   }
 }
 
@@ -63,6 +69,7 @@ function updateDisplay(element, data) {
   element.innerText = data;
 }
 
+// Function that handles operation
 function operate(numA, numB, operation) {
   // Converting passed arguments to number
   numA = +numA;
@@ -86,4 +93,21 @@ function operate(numA, numB, operation) {
   }
 
   return result;
+}
+
+// Function to reset calculator
+function resetCalc() {
+  setOperationVarsToDefault();
+  currentOpDisplay.innerText = "";
+  prevOpDisplay.innerText = "";
+}
+
+// function to set all opereation variables back to default;
+function setOperationVarsToDefault() {
+  a = "";
+  b = "";
+  op = "";
+  aFlag = false;
+  bFlag = false;
+  opFlag = false;
 }
