@@ -18,28 +18,36 @@
         <div class="theme-toggle-container"></div>
       </div>
       <!-- Display of the Calculator -->
-      <div class="sections display">
-        <p class="previous-operation">120</p>
-        <h2 class="current-operation">95484</h2>
+      <div class="sections display" data-main-display>
+        <p class="previous-operation" data-prev-op>result</p>
+        <h2 class="current-operation" data-current-op></h2>
       </div>
       <!-- KeyPad of the Calculator -->
-      <div class="sections keypad">
-        <button class="btn num-btn" type="button" value="7">7</button>
-        <button class="btn num-btn" type="button" value="8">8</button>
-        <button class="btn num-btn" type="button" value="9">9</button>
+      <div class="sections keypad" data-keypad>
+        <button class="btn num-btn" type="button" value="7" data-num>7</button>
+        <button class="btn num-btn" type="button" value="8" data-num>8</button>
+        <button class="btn num-btn" type="button" value="9" data-num>9</button>
         <button class="btn del-btn" type="button" value="del">Del</button>
-        <button class="btn num-btn" type="button" value="4">4</button>
-        <button class="btn num-btn" type="button" value="5">5</button>
-        <button class="btn num-btn" type="button" value="6">6</button>
-        <button class="btn operate-btn" type="button" value="×">×</button>
-        <button class="btn num-btn" type="button" value="1">1</button>
-        <button class="btn num-btn" type="button" value="2">2</button>
-        <button class="btn num-btn" type="button" value="3">3</button>
-        <button class="btn operate-btn" type="button" value="÷">÷</button>
+        <button class="btn num-btn" type="button" value="4" data-num>4</button>
+        <button class="btn num-btn" type="button" value="5" data-num>5</button>
+        <button class="btn num-btn" type="button" value="6" data-num>6</button>
+        <button class="btn operate-btn" type="button" value="×" data-op>
+          ×
+        </button>
+        <button class="btn num-btn" type="button" value="1" data-num>1</button>
+        <button class="btn num-btn" type="button" value="2" data-num>2</button>
+        <button class="btn num-btn" type="button" value="3" data-num>3</button>
+        <button class="btn operate-btn" type="button" value="÷" data-op>
+          ÷
+        </button>
         <button class="btn num-btn" type="button" value=".">.</button>
-        <button class="btn num-btn" type="button" value="0">0</button>
-        <button class="btn operate-btn" type="button" value="-">-</button>
-        <button class="btn operate-btn" type="button" value="+">+</button>
+        <button class="btn num-btn" type="button" value="0" data-num>0</button>
+        <button class="btn operate-btn" type="button" value="-" data-op>
+          -
+        </button>
+        <button class="btn operate-btn" type="button" value="+" data-op>
+          +
+        </button>
         <button class="btn del-btn span-two" type="button" value="reset">
           Reset
         </button>
@@ -47,6 +55,7 @@
           class="btn operate-btn equal-btn span-two"
           type="button"
           value="="
+          data-equal
         >
           =
         </button>
