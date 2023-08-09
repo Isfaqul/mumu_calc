@@ -24,11 +24,11 @@ function handleOperation(e) {
     if (aFlag && opFlag) {
       b += digit;
       bFlag = true;
-      updateDisplay(currentOpDisplay, b);
+      updateCurrentOpDisplay(currentOpDisplay, b);
     } else {
       a += digit;
       aFlag = true;
-      updateDisplay(currentOpDisplay, a);
+      updateCurrentOpDisplay(currentOpDisplay, a);
     }
   }
 
@@ -38,7 +38,7 @@ function handleOperation(e) {
       a = operate(a, b, op);
       b = "";
       bFlag = false;
-      updateDisplay(currentOpDisplay, a);
+      updateCurrentOpDisplay(currentOpDisplay, a);
     } else if (aFlag) {
       op = e.target.value;
       opFlag = true;
@@ -51,10 +51,7 @@ function handleOperation(e) {
   if (e.target.hasAttribute("data-equal")) {
     if (aFlag && bFlag && opFlag) {
       a = operate(a, b, op);
-      updateDisplay(currentOpDisplay, a);
-
-      // Set all back to after result is displayed
-      setOperationVarsToDefault();
+      updateCurrentOpDisplay(currentOpDisplay, a);
     }
   }
 
@@ -65,7 +62,7 @@ function handleOperation(e) {
 }
 
 // Function to update Display
-function updateDisplay(element, data) {
+function updateCurrentOpDisplay(element, data) {
   element.innerText = data;
 }
 
@@ -98,8 +95,8 @@ function operate(numA, numB, operation) {
 // Function to reset calculator
 function resetCalc() {
   setOperationVarsToDefault();
-  currentOpDisplay.innerText = "";
-  prevOpDisplay.innerText = "";
+  currentOpDisplay.innerText = "0";
+  prevOpDisplay.innerText = "result";
 }
 
 // function to set all opereation variables back to default;
