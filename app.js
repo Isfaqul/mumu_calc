@@ -11,12 +11,14 @@ let b = "";
 let bFlag = false;
 let op = ""; // operator
 let opFlag = false;
+let isEqualPressed = false;
 
 // Event Listener for keyPad
 keyPad.addEventListener("click", handleOperation);
 
 // function to handle operation
 function handleOperation(e) {
+  let result;
   // If target is a num
   if (e.target.hasAttribute("data-num")) {
     let digit = e.target.value;
@@ -40,19 +42,23 @@ function handleOperation(e) {
       bFlag = false;
       op = e.target.value;
       updateCurrentOpDisplay(currentOpDisplay, a);
+    } else if (!aFlag && isEqualPressed) {
+      a = result;
+      aFlag = true;
+      op = e.target.value;
+      opFlag = true;
     } else if (aFlag) {
       op = e.target.value;
       opFlag = true;
     }
   }
 
-  console.log("A:", a, "B:", b, "OP:", op);
-
   // If target is equal button
   if (e.target.hasAttribute("data-equal")) {
     if (aFlag && bFlag && opFlag) {
-      a = operate(a, b, op);
-      updateCurrentOpDisplay(currentOpDisplay, a);
+      isEqualPressed = true;
+      result = operate(a, b, op);
+      updateCurrentOpDisplay(currentOpDisplay, result);
 
       // Set all variables to default;
       setOperationVarsToDefault();
@@ -63,6 +69,8 @@ function handleOperation(e) {
   if (e.target.hasAttribute("data-reset")) {
     resetCalc();
   }
+
+  console.log("A:", a, "B:", b, "OP:", op, "EQ:", isEqualPressed);
 }
 
 // Function to update Display
