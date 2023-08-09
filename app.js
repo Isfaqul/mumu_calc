@@ -12,13 +12,16 @@ let bFlag = false;
 let op = ""; // operator
 let opFlag = false;
 let isEqualPressed = false;
+// Stores result from pressing equals only
+let result;
+// Handle decimal point
+let isDecimal = false;
 
 // Event Listener for keyPad
 keyPad.addEventListener("click", handleOperation);
 
 // function to handle operation
 function handleOperation(e) {
-  let result;
   // If target is a num
   if (e.target.hasAttribute("data-num")) {
     let digit = e.target.value;
@@ -36,14 +39,18 @@ function handleOperation(e) {
 
   // If target is a operator
   if (e.target.hasAttribute("data-op")) {
+    // if a and b has been chosen already
     if (aFlag && bFlag) {
-      a = operate(a, b, op);
+      // Store the calculated rounded of result in result var
+      result = Math.round(operate(a, b, op) * 10) / 10;
+      a = +result;
       b = "";
       bFlag = false;
       op = e.target.value;
       updateCurrentOpDisplay(currentOpDisplay, a);
+      // if a is not chosen and equal btn has been pressed
     } else if (!aFlag && isEqualPressed) {
-      a = result;
+      a = +result;
       aFlag = true;
       op = e.target.value;
       opFlag = true;
@@ -57,7 +64,8 @@ function handleOperation(e) {
   if (e.target.hasAttribute("data-equal")) {
     if (aFlag && bFlag && opFlag) {
       isEqualPressed = true;
-      result = operate(a, b, op);
+      result = Math.round(operate(a, b, op) * 10) / 10;
+      console.log("result:::", result);
       updateCurrentOpDisplay(currentOpDisplay, result);
 
       // Set all variables to default;
@@ -70,7 +78,18 @@ function handleOperation(e) {
     resetCalc();
   }
 
-  console.log("A:", a, "B:", b, "OP:", op, "EQ:", isEqualPressed);
+  console.log(
+    "A:",
+    a,
+    "B:",
+    b,
+    "OP:",
+    op,
+    "EQ:",
+    isEqualPressed,
+    "result: ",
+    result
+  );
 }
 
 // Function to update Display
@@ -109,6 +128,7 @@ function resetCalc() {
   setOperationVarsToDefault();
   currentOpDisplay.innerText = "0";
   prevOpDisplay.innerText = "=";
+  isEqualPressed = false;
 }
 
 // function to set all opereation variables back to default;
