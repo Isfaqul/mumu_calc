@@ -78,6 +78,26 @@ function handleOperation(e) {
     resetCalc();
   }
 
+  // Del handler
+  if (e.target.hasAttribute("data-del")) {
+    console.log(e.target.value);
+
+    if (aFlag && !bFlag) {
+      a = a.slice(0, a.length - 1);
+      updateCurrentOpDisplay(currentOpDisplay, a);
+
+      // if all chars are removed, display 0
+      if (!a) updateCurrentOpDisplay(currentOpDisplay, 0);
+    } else if (bFlag && opFlag) {
+      b = b.slice(0, b.length - 1);
+      updateCurrentOpDisplay(currentOpDisplay, b);
+
+      // if all chars are removed, display 0
+      if (!b) updateCurrentOpDisplay(currentOpDisplay, 0);
+    }
+  }
+
+  // console.log
   console.log(
     "A:",
     a,
@@ -140,3 +160,5 @@ function setOperationVarsToDefault() {
   bFlag = false;
   opFlag = false;
 }
+
+// Del Character
