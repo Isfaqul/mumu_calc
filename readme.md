@@ -18,3 +18,8 @@
 - **10th Aug 2023 @ 1:33PM** : The current issues in hand -
   - Make users use the decimal point only once
 - **11th Aug 2023 @ 12:36PM** : Added show history function. But haven't been able to figure out the decimals with my current setup
+- **11th Aug 2023 @ 2:16PM** : Finaly solved the decimal handler issues as follows -
+  1. Used two different flags for both input A and B to track whether they have used decimal.
+  2. When choosing numA/numB, check if it includes ".", if it does, set the flag for "ADecimalUsed/BDecimalUsed" to true so we know a decimal is in place. Else set it to false.
+  3. As per this information, whenever decimal button is pressed, it is disabled, if decimal has been already used.
+  4. In specific placed, re-enable the button, such as after operator has been pressed so as to allow numB to have a decimal. After equal has been pressed in order, after del option removes a decimal.

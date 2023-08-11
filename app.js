@@ -33,15 +33,25 @@ function handleOperation(e) {
     if (aChoosen && opChoosen) {
       b += digit;
       bChoosen = true;
+
+      // Check if decimal has been used
+      if (b.includes(".")) decUsedB = true;
+      else decUsedB = false;
+
       updateDisplay(currentOpDisplay, b);
     } else {
       a += digit;
       aChoosen = true;
+
+      // Check if decimal has been used
+      if (a.includes(".")) decUsedA = true;
+      else decUsedA = false;
+
       updateDisplay(currentOpDisplay, a);
     }
   }
 
-  // If target is a operator
+  // If target is an operator
   if (e.target.hasAttribute("data-op")) {
     // if a and b has been chosen already
     if (aChoosen && bChoosen) {
@@ -50,6 +60,9 @@ function handleOperation(e) {
       a = +result;
       b = "";
       bChoosen = false;
+      //enable decimal after b is blank
+      enableDecimal();
+
       op = e.target.value;
       updateDisplay(currentOpDisplay, a);
       // if a is not chosen and equal btn has been pressed
@@ -61,6 +74,9 @@ function handleOperation(e) {
     } else if (aChoosen) {
       op = e.target.value;
       opChoosen = true;
+
+      // Enable decimal button after operator has been chosen
+      enableDecimal();
     }
 
     prevOps = `${a} ${op}`;
@@ -72,6 +88,9 @@ function handleOperation(e) {
     if (aChoosen && bChoosen && opChoosen) {
       isEqualPressed = true;
 
+      // Enable decimal button after equal has been pressed
+      enableDecimal();
+
       result = Math.round(operate(a, b, op) * 10) / 10;
       console.log("result:::", result);
       prevOps = `${a} ${op} ${b} =`;
@@ -80,6 +99,17 @@ function handleOperation(e) {
 
       // Set all variables to default;
       setOperationVarsToDefault();
+    }
+  }
+
+  // Decimal Handler For every time it is pressed
+  if (e.target.hasAttribute("data-dec")) {
+    if (decUsedA) {
+      disableDecimal();
+    }
+
+    if (decUsedB) {
+      disableDecimal();
     }
   }
 
@@ -96,8 +126,14 @@ function handleOperation(e) {
       a = a.slice(0, a.length - 1);
       updateDisplay(currentOpDisplay, a);
 
+      // If a doesn't include a decimal
+      if (!a.includes(".")) {
+        enableDecimal();
+      }
+
       // if all chars are removed, display 0
       if (!a) {
+        enableDecimal();
         updateDisplay(currentOpDisplay, 0);
         a = 0;
       }
@@ -105,8 +141,14 @@ function handleOperation(e) {
       b = b.slice(0, b.length - 1);
       updateDisplay(currentOpDisplay, b);
 
+      // If b doesn't include a decimal
+      if (!b.includes(".")) {
+        enableDecimal();
+      }
+
       // if all chars are removed, display 0
       if (!b) {
+        enableDecimal();
         updateDisplay(currentOpDisplay, 0);
         b = 0;
       }
@@ -165,6 +207,8 @@ function resetCalc() {
   currentOpDisplay.innerText = "0";
   prevOpDisplay.innerText = "=";
   isEqualPressed = false;
+  decUsedA = false;
+  decUsedB = false;
 }
 
 // function to set all opereation variables back to default;
@@ -175,4 +219,13 @@ function setOperationVarsToDefault() {
   aChoosen = false;
   bChoosen = false;
   opChoosen = false;
+}
+
+// function to enable and disabled decimal
+function enableDecimal() {
+  decimalBtn.disabled = false;
+}
+
+function disableDecimal() {
+  decimalBtn.disabled = true;
 }
