@@ -223,3 +223,9 @@ body {
   background-color: var(--theme-switch-bg);
   cursor: pointer;
 }
+
+@media (min-width: 1200px) {
+  .app-container {
+    max-width: 54rem;
+  }
+}
