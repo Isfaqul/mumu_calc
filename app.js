@@ -229,3 +229,23 @@ function enableDecimal() {
 function disableDecimal() {
   decimalBtn.disabled = true;
 }
+
+// Handle Theme Toggle
+const themeToggleBtn = document.querySelector("div[data-theme-btn]");
+const themeFileEl = document.querySelector("link[data-theme-file]");
+let themeIndex = 1;
+
+themeToggleBtn.addEventListener("click", toggleTheme);
+
+// Theme toggle function
+function toggleTheme() {
+  const justifyOptions = ["flex-start", "center", "flex-end"];
+  const themeFiles = ["color1.css", "color2.css", "color3.css"];
+  themeToggleBtn.style.justifyContent = justifyOptions[themeIndex];
+  themeFileEl.setAttribute("href", themeFiles[themeIndex]);
+  themeIndex++;
+
+  if (themeIndex === justifyOptions.length) {
+    themeIndex = 0;
+  }
+}

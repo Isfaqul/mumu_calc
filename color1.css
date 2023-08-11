@@ -1,0 +1,28 @@
+:root {
+  /* Header Section */
+  --body-bg: #3b4664;
+  --calc-body-bg: #3b4664;
+  --calc-title: white;
+  --theme-btn-container-bg: #252d44;
+  --theme-switch-bg: #f20000;
+
+  /* Display */
+  --display-bg: #181f32;
+  --display-previous-txt: rgba(255, 255, 255, 0.6);
+  --display-main-txt: white;
+
+  /* Keypad */
+  --keypad-bg: #252d44;
+  --num-key-main: #eae3db;
+  --num-key-shadow: #b4a59a;
+  --num-key-txt: #454955;
+  --delete-key-main: #647299;
+  --delete-key-shadow: #404e75;
+  --delete-key-txt: white;
+  --operate-key-main: #99646a;
+  --operate-key-shadow: #784a4f;
+  --operator-key-txt: white;
+  --equal-key-main: #d13f30;
+  --equal-key-shadow: #8f2316;
+  --equal-key-txt: white;
+}

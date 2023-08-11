@@ -1,32 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Megrim&family=Poppins:wght@400;700;800&display=swap");
 
-:root {
-  /* Header Section */
-  --body-bg: #3b4664;
-  --calc-body-bg: #3b4664;
-  --calc-title: white;
-
-  /* Display */
-  --display-bg: #181f32;
-  --display-previous-txt: rgba(255, 255, 255, 0.6);
-  --display-main-txt: white;
-
-  /* Keypad */
-  --keypad-bg: #252d44;
-  --num-key-main: #eae3db;
-  --num-key-shadow: #b4a59a;
-  --num-key-txt: #454955;
-  --delete-key-main: #647299;
-  --delete-key-shadow: #404e75;
-  --delete-key-txt: white;
-  --operate-key-main: #99646a;
-  --operate-key-shadow: #784a4f;
-  --operator-key-txt: white;
-  --equal-key-main: #d13f30;
-  --equal-key-shadow: #8f2316;
-  --equal-key-txt: white;
-}
-
 *,
 *::before,
 *::after {
@@ -59,6 +32,9 @@ body {
 
 .sections.header {
   margin-bottom: 2.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .title {
@@ -137,6 +113,7 @@ body {
 }
 
 .btn.equal-btn {
+  color: var(--equal-key-txt);
   background-color: var(--equal-key-main);
   box-shadow: 0px 3px 0px 0px var(--equal-key-shadow);
 }
@@ -191,4 +168,58 @@ body {
 .btn.equal-btn:active {
   transform: none;
   box-shadow: 0px 3px 0px 0px var(--equal-key-shadow);
+}
+
+/* Theme Toggle Styling */
+.theme-toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  color: var(--calc-title);
+  align-items: flex-end;
+}
+
+.theme-txt-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  margin-bottom: 0.4em;
+}
+
+.theme-num-item {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.theme-toggle-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.theme-num-container {
+  display: flex;
+  gap: 2em;
+}
+
+.theme-toggle-btn-container {
+  background-color: var(--theme-btn-container-bg);
+  width: 7em;
+  height: 2.6em;
+  border-radius: 1.3em;
+  padding: 0.2em 0.6em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.theme-red-btn {
+  height: 1.2em;
+  width: 1.2em;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background-color: var(--theme-switch-bg);
+  cursor: pointer;
 }

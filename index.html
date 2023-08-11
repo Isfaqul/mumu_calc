@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="widh=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="color1.css" data-theme-file />
     <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
     <title>MumuCalc</title>
@@ -15,7 +17,19 @@
         <div class="title-container">
           <h1 class="title">MUMUCALC</h1>
         </div>
-        <div class="theme-toggle-container"></div>
+        <div class="theme-toggle-container">
+          <h3 class="theme-txt-title">Theme</h3>
+          <div class="theme-toggle-options">
+            <div class="theme-num-container">
+              <p class="theme-num-item">1</p>
+              <p class="theme-num-item">2</p>
+              <p class="theme-num-item">3</p>
+            </div>
+            <div class="theme-toggle-btn-container" data-theme-btn>
+              <button type="button" class="theme-red-btn"></button>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- Display of the Calculator -->
       <div class="sections display" data-main-display>
