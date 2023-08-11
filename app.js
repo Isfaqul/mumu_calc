@@ -2,20 +2,22 @@
 const keyPad = document.querySelector("div[data-keypad]");
 const mainDisplay = document.querySelector("div[data-main-display]");
 const currentOpDisplay = mainDisplay.querySelector("h2");
-const prevOpDisplay = mainDisplay.querySelector("p");
+const prevOpDisplay = mainDisplay.querySelector("p[data-prev-op]");
 
 // Variables to handle operations
 let a = "";
-let aFlag = false;
+let aChoosen = false;
 let b = "";
-let bFlag = false;
+let bChoosen = false;
 let op = ""; // operator
-let opFlag = false;
+let opChoosen = false;
 let isEqualPressed = false;
 // Stores result from pressing equals only
 let result;
 // Handle decimal point
 let isDecimal = false;
+// prev operations
+let prevOps = "";
 
 // Event Listener for keyPad
 keyPad.addEventListener("click", handleOperation);
@@ -26,47 +28,53 @@ function handleOperation(e) {
   if (e.target.hasAttribute("data-num")) {
     let digit = e.target.value;
 
-    if (aFlag && opFlag) {
+    if (aChoosen && opChoosen) {
       b += digit;
-      bFlag = true;
-      updateCurrentOpDisplay(currentOpDisplay, b);
+      bChoosen = true;
+      updateDisplay(currentOpDisplay, b);
     } else {
       a += digit;
-      aFlag = true;
-      updateCurrentOpDisplay(currentOpDisplay, a);
+      aChoosen = true;
+      updateDisplay(currentOpDisplay, a);
     }
   }
 
   // If target is a operator
   if (e.target.hasAttribute("data-op")) {
     // if a and b has been chosen already
-    if (aFlag && bFlag) {
+    if (aChoosen && bChoosen) {
       // Store the calculated rounded of result in result var
       result = Math.round(operate(a, b, op) * 10) / 10;
       a = +result;
       b = "";
-      bFlag = false;
+      bChoosen = false;
       op = e.target.value;
-      updateCurrentOpDisplay(currentOpDisplay, a);
+      updateDisplay(currentOpDisplay, a);
       // if a is not chosen and equal btn has been pressed
-    } else if (!aFlag && isEqualPressed) {
+    } else if (!aChoosen && isEqualPressed) {
       a = +result;
-      aFlag = true;
+      aChoosen = true;
       op = e.target.value;
-      opFlag = true;
-    } else if (aFlag) {
+      opChoosen = true;
+    } else if (aChoosen) {
       op = e.target.value;
-      opFlag = true;
+      opChoosen = true;
     }
+
+    prevOps = `${a} ${op}`;
+    updateDisplay(prevOpDisplay, prevOps);
+    updateDisplay(currentOpDisplay, 0);
   }
 
   // If target is equal button
   if (e.target.hasAttribute("data-equal")) {
-    if (aFlag && bFlag && opFlag) {
+    if (aChoosen && bChoosen && opChoosen) {
       isEqualPressed = true;
       result = Math.round(operate(a, b, op) * 10) / 10;
       console.log("result:::", result);
-      updateCurrentOpDisplay(currentOpDisplay, result);
+      prevOps = `${a} ${op} ${b} =`;
+      updateDisplay(prevOpDisplay, prevOps);
+      updateDisplay(currentOpDisplay, result);
 
       // Set all variables to default;
       setOperationVarsToDefault();
@@ -82,20 +90,29 @@ function handleOperation(e) {
   if (e.target.hasAttribute("data-del")) {
     console.log(e.target.value);
 
-    if (aFlag && !bFlag) {
+    if (aChoosen && !bChoosen) {
       a = a.slice(0, a.length - 1);
-      updateCurrentOpDisplay(currentOpDisplay, a);
+      updateDisplay(currentOpDisplay, a);
 
       // if all chars are removed, display 0
-      if (!a) updateCurrentOpDisplay(currentOpDisplay, 0);
-    } else if (bFlag && opFlag) {
+      if (!a) updateDisplay(currentOpDisplay, 0);
+    } else if (bChoosen && opChoosen) {
       b = b.slice(0, b.length - 1);
-      updateCurrentOpDisplay(currentOpDisplay, b);
+      updateDisplay(currentOpDisplay, b);
 
       // if all chars are removed, display 0
-      if (!b) updateCurrentOpDisplay(currentOpDisplay, 0);
+      if (!b) updateDisplay(currentOpDisplay, 0);
     }
   }
+
+  // Handle Decimal Points
+  // if (e.target.hasAttribute("data-dec")) {
+  //   if (currentOpDisplay.innerText.includes(".")) {
+  //     e.target.disabled = true;
+  //   } else {
+  //     e.target.disabled = false;
+  //   }
+  // }
 
   // console.log
   console.log(
@@ -113,7 +130,7 @@ function handleOperation(e) {
 }
 
 // Function to update Display
-function updateCurrentOpDisplay(element, data) {
+function updateDisplay(element, data) {
   element.innerText = data;
 }
 
@@ -156,9 +173,7 @@ function setOperationVarsToDefault() {
   a = "";
   b = "";
   op = "";
-  aFlag = false;
-  bFlag = false;
-  opFlag = false;
+  aChoosen = false;
+  bChoosen = false;
+  opChoosen = false;
 }
-
-// Del Character
