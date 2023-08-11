@@ -17,3 +17,4 @@
   - **9th Aug 2023 @ 7PM** : Solved the bug equal button bug
 - **10th Aug 2023 @ 1:33PM** : The current issues in hand -
   - Make users use the decimal point only once
+- **11th Aug 2023 @ 12:36PM** : Added show history function. But haven't been able to figure out the decimals with my current setup
