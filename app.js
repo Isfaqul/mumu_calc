@@ -3,6 +3,7 @@ const keyPad = document.querySelector("div[data-keypad]");
 const mainDisplay = document.querySelector("div[data-main-display]");
 const currentOpDisplay = mainDisplay.querySelector("h2");
 const prevOpDisplay = mainDisplay.querySelector("p[data-prev-op]");
+const decimalBtn = keyPad.querySelector("button[data-dec]");
 
 // Variables to handle operations
 let a = "";
@@ -15,8 +16,9 @@ let isEqualPressed = false;
 // Stores result from pressing equals only
 let result;
 // Handle decimal point
-let isDecimal = false;
-// prev operations
+let decUsedA = false;
+let decUsedB = false;
+// track prev operations
 let prevOps = "";
 
 // Event Listener for keyPad
@@ -63,13 +65,13 @@ function handleOperation(e) {
 
     prevOps = `${a} ${op}`;
     updateDisplay(prevOpDisplay, prevOps);
-    updateDisplay(currentOpDisplay, 0);
   }
 
   // If target is equal button
   if (e.target.hasAttribute("data-equal")) {
     if (aChoosen && bChoosen && opChoosen) {
       isEqualPressed = true;
+
       result = Math.round(operate(a, b, op) * 10) / 10;
       console.log("result:::", result);
       prevOps = `${a} ${op} ${b} =`;
@@ -95,24 +97,21 @@ function handleOperation(e) {
       updateDisplay(currentOpDisplay, a);
 
       // if all chars are removed, display 0
-      if (!a) updateDisplay(currentOpDisplay, 0);
+      if (!a) {
+        updateDisplay(currentOpDisplay, 0);
+        a = 0;
+      }
     } else if (bChoosen && opChoosen) {
       b = b.slice(0, b.length - 1);
       updateDisplay(currentOpDisplay, b);
 
       // if all chars are removed, display 0
-      if (!b) updateDisplay(currentOpDisplay, 0);
+      if (!b) {
+        updateDisplay(currentOpDisplay, 0);
+        b = 0;
+      }
     }
   }
-
-  // Handle Decimal Points
-  // if (e.target.hasAttribute("data-dec")) {
-  //   if (currentOpDisplay.innerText.includes(".")) {
-  //     e.target.disabled = true;
-  //   } else {
-  //     e.target.disabled = false;
-  //   }
-  // }
 
   // console.log
   console.log(
