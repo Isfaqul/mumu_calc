@@ -1,3 +1,37 @@
+// Set Calc Name
+const nameList = ["IFUCALC", "MUMUCALC", "MIZUCALC", "IMUCALC", "KUCHUCALC"];
+const titleEl = document.querySelector(".title");
+let askName = prompt("Your name: ");
+if (askName) askName = askName.toLowerCase();
+
+switch (askName) {
+  case "mumu":
+  case "mamta":
+  case "mamta baruah":
+    titleEl.innerText = nameList[1];
+    break;
+  case "irfan":
+  case "irfan hussain":
+    titleEl.innerText = nameList[0];
+    break;
+  case "imran":
+  case "imran hussain":
+    titleEl.innerText = nameList[3];
+    break;
+  case "kuchu":
+    titleEl.innerText = nameList[4];
+    break;
+  case "minuwara":
+  case "minuwara khatun":
+    titleEl.innerText = nameList[2];
+    break;
+  case "":
+  case null:
+  default:
+    titleEl.innerText = "THECALC.";
+    break;
+}
+
 // Grab Elements
 const keyPad = document.querySelector("div[data-keypad]");
 const mainDisplay = document.querySelector("div[data-main-display]");
